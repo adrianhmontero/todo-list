@@ -1,6 +1,10 @@
 // HTML Refs
 
+import { todoList } from "..";
+import { Todo } from "../classes";
+
 const divTodoList = document.querySelector(".todo-list");
+const txtInput = document.querySelector(".new-todo");
 
 export const createTodoHtml = (todo) => {
   const todoHtml = `
@@ -19,3 +23,19 @@ export const createTodoHtml = (todo) => {
 
   return div;
 };
+
+// EVENTS
+txtInput.addEventListener("keyup", ({ keyCode, target: { value } }) => {
+  console.log({ keyCode, value, todoList });
+  // IF user pressed 'Enter' key & value exists & is not repeated
+  if (keyCode === 13 && value) {
+    if (todoList?.todos.every((td) => td?.task != value)) {
+      const newTodo = new Todo(value);
+      todoList.newTodo(newTodo);
+      createTodoHtml(newTodo);
+      txtInput.value = "";
+    } else {
+      txtInput.value = "";
+    }
+  }
+});

@@ -29,7 +29,6 @@ export const createTodoHtml = (todo) => {
 
 //add toDo
 txtInput.addEventListener("keyup", ({ keyCode, target: { value } }) => {
-  console.log({ keyCode, value, todoList });
   // IF user pressed 'Enter' key & value exists
   if (keyCode === 13 && value) {
     //IF todo is not repeated
